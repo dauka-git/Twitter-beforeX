@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Paper, IconButton, Typography, styled, Container, TextField, alpha} from '@mui/material'
+import { Grid, Paper, IconButton, Typography, styled, Container,  alpha} from '@mui/material'
 
 
 import { SearchTextField } from './SearchTextField';
@@ -18,12 +18,12 @@ import { BorderBottom, Height, LineStyle, Margin, Padding } from '@mui/icons-mat
 const AuthLayout = styled('div')({
   display: 'flex',
   height: '100vh',
-  MarginLeft: '-8px',
+  marginLeft: '-8px',
 
   '& .sideMenuList': {
     listStyle: 'none',
-    Padding: 0,
-    Margin: 0
+    padding: 0,
+    margin: 0
   },
   '& .sideMenuListItem': {
     display: 'flex',
@@ -31,7 +31,7 @@ const AuthLayout = styled('div')({
   },
   '& tweetswrapper':{
     borderRadius:0,
-    Height: '100%', 
+    height: '100%', 
     borderTop: '0',
     BorderBottom: '0',
   }
@@ -44,7 +44,7 @@ export const Home = () => {
     <Container maxWidth="lg" sx={{ p: 0 }}>
     <AuthLayout>
       <Grid container spacing={0}>
-        <Grid item xs={3} sx={{ paddingLeft: '0 !important' }} >
+        <Grid item={true} xs={3}  component="div" sx={{ paddingLeft: '0 !important' }} >
           <ul className='sideMenuList'>
             <li className='sideMenuListItem'>
               <IconButton 
@@ -103,7 +103,7 @@ export const Home = () => {
             ))}
           </ul>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6}  component="div">
           <Paper className='tweetswrapper' variant='outlined'>
           <Paper className='tweetswrapper' variant='outlined'>
             Главная
@@ -111,7 +111,7 @@ export const Home = () => {
           </Paper>
           
         </Grid>
-        <Grid item xs={3} sx={{ 
+        <Grid item xs={3}  component="div" sx={{ 
             p: 2, 
             position: 'sticky',
             top: 0,
