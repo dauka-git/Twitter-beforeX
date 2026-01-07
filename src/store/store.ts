@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { TagsState } from './ducks/tags/contracts/state';
 import { TweetState } from './ducks/tweet/contracts/state';
@@ -8,15 +8,6 @@ import { UsersState } from './ducks/users/contracts/state';
 
 import { rootReducer } from './rootReducer';
 import rootSaga from './saga';
-
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-  }
-}
-
-const composeEnhancers =
-  (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -28,6 +19,14 @@ export interface RootState {
   users: UsersState;
 }
 
-export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: false,
+      serializableCheck: false,
+    }).concat(sagaMiddleware),
+  devTools: process.env.NODE_ENV !== 'production',
+});
 
 sagaMiddleware.run(rootSaga);

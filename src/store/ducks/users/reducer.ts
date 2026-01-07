@@ -1,4 +1,4 @@
-import produce, { Draft } from 'immer';
+import { produce, Draft } from 'immer';
 import { LoadingStatus } from '../../types';
 import { UsersActions, UsersActionsType } from './actionCreators';
 import { UsersState } from './contracts/state';

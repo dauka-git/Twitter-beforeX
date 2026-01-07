@@ -1,13 +1,13 @@
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { useHistory } from 'react-router-dom';
+import { IconButton } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
 
 export const BackButton: React.FC = (): React.ReactElement => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleClickButton = () => {
-    history.goBack();
+    navigate(-1);
   };
 
   return (

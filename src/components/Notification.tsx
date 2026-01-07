@@ -1,16 +1,15 @@
-import Snackbar from '@material-ui/core/Snackbar';
-import Alert, { Color } from '@material-ui/lab/Alert';
+import { Snackbar, Alert, AlertColor } from '@mui/material';
 import React from 'react'
 
 interface NotificationProps {
-  children: (callback: (text: string, type: Color) => void) => React.ReactElement;
+  children: (callback: (text: string, type: AlertColor) => void) => React.ReactElement;
 }
 
 export const Notification: React.FC<NotificationProps> = ({ children }): React.ReactElement => {
   const [open, setOpen] = React.useState<boolean>(false);
-  const [notificationObj, setNotificationObj] = React.useState<{ text: string; type: Color }>();
+  const [notificationObj, setNotificationObj] = React.useState<{ text: string; type: AlertColor }>();
 
-  const openNotification = (text: string, type: Color) => {
+  const openNotification = (text: string, type: AlertColor) => {
     setNotificationObj({
       text,
       type

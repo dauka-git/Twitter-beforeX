@@ -1,13 +1,8 @@
-import { Avatar, CircularProgress } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
+import { Avatar, CircularProgress, Paper, Typography, Tabs, Tab, Skeleton } from '@mui/material';
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 import { BackButton } from '../../components/BackButton';
 import { useHomeStyles } from '../theme';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import classNames from 'classnames';
-import Skeleton from '@material-ui/lab/Skeleton';
 
 import './User.scss';
 import { useDispatch, useSelector } from 'react-redux';

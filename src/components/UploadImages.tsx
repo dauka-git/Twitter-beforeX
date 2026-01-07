@@ -1,6 +1,6 @@
-import { IconButton } from '@material-ui/core';
+import { IconButton } from '@mui/material';
 import React from 'react';
-import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
+import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 
 import { useHomeStyles } from '../pages/theme';
 import { ImageObj } from './AddTweetForm';

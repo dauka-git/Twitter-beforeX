@@ -1,5 +1,5 @@
 import React from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { CircularProgress, Paper, Typography, Box } from '@mui/material';
 
 import { AddTweetForm } from '../../components/AddTweetForm';
 import { Tweet } from '../../components/Tweet';
@@ -11,8 +11,6 @@ import { Route } from 'react-router-dom';
 import { BackButton } from '../../components/BackButton';
 import { FullTweet } from './components/FullTweet';
 import { fetchTags } from '../../store/ducks/tags/actionCreators';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 
 export const Home = (): React.ReactElement => {
   const classes = useHomeStyles();
@@ -26,8 +24,8 @@ export const Home = (): React.ReactElement => {
   }, [dispatch]);
 
   return (
-    <Paper className={classes.tweetsWrapper} variant="outlined">
-      <Paper className={classes.tweetsHeader} variant="outlined">
+    <Paper sx={classes.tweetsWrapper} variant="outlined">
+      <Paper sx={classes.tweetsHeader} variant="outlined">
         <Route path="/home/:any">
           <BackButton />
         </Route>
@@ -43,18 +41,18 @@ export const Home = (): React.ReactElement => {
 
       <Route path={['/home', '/home/search']} exact>
         <Paper>
-          <div className={classes.addForm}>
+          <Box sx={classes.addForm}>
             <AddTweetForm classes={classes} />
-          </div>
-          <div className={classes.addFormBottomLine} />
+          </Box>
+          <Box sx={classes.addFormBottomLine} />
         </Paper>
       </Route>
 
       <Route path="/home" exact>
         {isLoading ? (
-          <div className={classes.tweetsCentred}>
+          <Box sx={classes.tweetsCentred}>
             <CircularProgress />
-          </div>
+          </Box>
         ) : (
           tweets.map((tweet) => (
             <Tweet key={tweet._id} classes={classes} images={tweet.images} {...tweet} />

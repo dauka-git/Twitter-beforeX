@@ -1,8 +1,5 @@
-import { colors, Menu, MenuItem } from '@material-ui/core';
-import Avatar from '@material-ui/core/Avatar';
-import Popover from '@material-ui/core/Popover';
-import ArrowBottomIcon from '@material-ui/icons/KeyboardArrowDown';
-import Typography from '@material-ui/core/Typography';
+import { colors, Menu, MenuItem, Avatar, Popover, Typography } from '@mui/material';
+import ArrowBottomIcon from '@mui/icons-material/KeyboardArrowDown';
 import React from 'react';
 import { useHomeStyles } from '../pages/theme';
 import { useDispatch, useSelector } from 'react-redux';

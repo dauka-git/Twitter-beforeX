@@ -1,30 +1,28 @@
 import React from 'react';
-import { Container, Grid, InputAdornment } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/SearchOutlined';
+import { Container, Grid, InputAdornment, Box } from '@mui/material';
+import SearchIcon from '@mui/icons-material/SearchOutlined';
+import { Outlet } from 'react-router-dom';
 
 import { SideMenu } from '../components/SideMenu';
 import { useHomeStyles } from './theme';
 import { SearchTextField } from '../components/SearchTextField';
 import { Tags } from '../components/Tags';
 import { Users } from '../components/Users';
-interface Layout {
-  children: React.ReactNode;
-}
 
-export const Layout: React.FC<Layout> = ({ children }): React.ReactElement => {
+export const Layout: React.FC = (): React.ReactElement => {
   const classes = useHomeStyles();
 
   return (
-    <Container className={classes.wrapper} maxWidth="lg">
+    <Container sx={classes.wrapper} maxWidth="lg">
       <Grid container spacing={3}>
         <Grid sm={1} md={3} item>
           <SideMenu classes={classes} />
         </Grid>
         <Grid sm={8} md={6} item>
-          {children}
+          <Outlet />
         </Grid>
         <Grid sm={3} md={3} item>
-          <div className={classes.rightSide}>
+          <Box sx={classes.rightSide}>
             <SearchTextField
               variant="outlined"
               placeholder="Поиск по Твиттеру"
@@ -39,7 +37,7 @@ export const Layout: React.FC<Layout> = ({ children }): React.ReactElement => {
             />
             <Tags classes={classes} />
             <Users />
-          </div>
+          </Box>
         </Grid>
       </Grid>
     </Container>

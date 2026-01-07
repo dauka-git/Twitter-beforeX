@@ -1,14 +1,6 @@
 import React from 'react'
-import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
-import ListItem from '@material-ui/core/ListItem/ListItem';
-import Divider from '@material-ui/core/Divider/Divider';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar/Avatar';
-import ListItemText from '@material-ui/core/ListItemText/ListItemText';
-import List from '@material-ui/core/List/List';
-import Button from '@material-ui/core/Button/Button';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import PersonAddIcon from '@mui/icons-material/PersonAddOutlined';
+import { ListItem, Divider, ListItemAvatar, Avatar, ListItemText, List, Button, Paper, Typography } from '@mui/material';
 import { useHomeStyles } from '../pages/theme';
 import { useSelector } from 'react-redux';
 import { selectUsersItems } from '../store/ducks/users/selectors';

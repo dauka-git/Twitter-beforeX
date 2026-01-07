@@ -1,4 +1,4 @@
-import produce, { Draft } from 'immer';
+import { produce, Draft } from 'immer';
 import { LoadingStatus } from '../../types';
 import { TweetActions } from './actionCreators';
 import { TweetActionsType } from './contracts/actionTypes';

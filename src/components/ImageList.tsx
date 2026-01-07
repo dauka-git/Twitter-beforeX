@@ -1,8 +1,8 @@
-import { IconButton } from '@material-ui/core';
+import { IconButton } from '@mui/material';
 import React from 'react';
 import { useHomeStyles } from '../pages/theme';
 import { ImageObj } from './AddTweetForm';
-import ClearIcon from '@material-ui/icons/Clear';
+import ClearIcon from '@mui/icons-material/Clear';
 
 interface ImageListProps {
   images: string[];

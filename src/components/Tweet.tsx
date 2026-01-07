@@ -1,14 +1,13 @@
 import React from 'react';
-import classNames from 'classnames';
-import CommentIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
-import RepostIcon from '@material-ui/icons/RepeatOutlined';
-import LikeIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import ShareIcon from '@material-ui/icons/ReplyOutlined';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
+import RepostIcon from '@mui/icons-material/RepeatOutlined';
+import LikeIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import ShareIcon from '@mui/icons-material/ReplyOutlined';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-import { Avatar, IconButton, Menu, MenuItem, Paper, Typography } from '@material-ui/core';
+import { Avatar, IconButton, Menu, MenuItem, Paper, Typography, Box } from '@mui/material';
 import { useHomeStyles } from '../pages/theme';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../utils/formatDate';
 import { ImageList } from './ImageList';
 import { removeTweet } from '../store/ducks/tweets/actionCreators';
@@ -35,11 +34,11 @@ export const Tweet: React.FC<TweetProps> = ({
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleClickTweet = (event: React.MouseEvent<HTMLAnchorElement>): void => {
     event.preventDefault();
-    history.push(`/home/tweet/${_id}`);
+    navigate(`/home/tweet/${_id}`);
   };
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -62,18 +61,18 @@ export const Tweet: React.FC<TweetProps> = ({
   };
 
   return (
-    <a onClick={handleClickTweet} className={classes.tweetWrapper} href={`/home/tweet/${_id}`}>
-      <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant="outlined">
-        <Avatar className={classes.tweetAvatar} alt={`Аватарка пользователя ${user.fullname}`} />
-        <div className={classes.tweetContent}>
-          <div className={classes.tweetHeader}>
-            <div>
+    <Box component="a" onClick={handleClickTweet} sx={classes.tweetWrapper} href={`/home/tweet/${_id}`}>
+      <Paper sx={{ ...classes.tweet, ...classes.tweetsHeader }} variant="outlined">
+        <Avatar sx={classes.tweetAvatar} alt={`Аватарка пользователя ${user.fullname}`} />
+        <Box sx={classes.tweetContent}>
+          <Box sx={classes.tweetHeader}>
+            <Box>
               <b>{user.fullname}</b>&nbsp;
-              <span className={classes.tweetUserName}>@{user.username}</span>&nbsp;
-              <span className={classes.tweetUserName}>·</span>&nbsp;
-              <span className={classes.tweetUserName}>{formatDate(new Date(createdAt))}</span>
-            </div>
-            <div>
+              <Typography component="span" sx={classes.tweetUserName}>@{user.username}</Typography>&nbsp;
+              <Typography component="span" sx={classes.tweetUserName}>·</Typography>&nbsp;
+              <Typography component="span" sx={classes.tweetUserName}>{formatDate(new Date(createdAt))}</Typography>
+            </Box>
+            <Box>
               <IconButton
                 aria-label="more"
                 aria-controls="long-menu"
@@ -85,37 +84,37 @@ export const Tweet: React.FC<TweetProps> = ({
                 <MenuItem onClick={handleClose}>Редактировать</MenuItem>
                 <MenuItem onClick={handleRemove}>Удалить твит</MenuItem>
               </Menu>
-            </div>
-          </div>
+            </Box>
+          </Box>
           <Typography variant="body1" gutterBottom>
             {text}
             {images && <ImageList classes={classes} images={images} />}
           </Typography>
-          <div className={classes.tweetFooter}>
-            <div>
+          <Box sx={classes.tweetFooter}>
+            <Box>
               <IconButton>
                 <CommentIcon style={{ fontSize: 20 }} />
               </IconButton>
               <span>1</span>
-            </div>
-            <div>
+            </Box>
+            <Box>
               <IconButton>
                 <RepostIcon style={{ fontSize: 20 }} />
               </IconButton>
-            </div>
-            <div>
+            </Box>
+            <Box>
               <IconButton>
                 <LikeIcon style={{ fontSize: 20 }} />
               </IconButton>
-            </div>
-            <div>
+            </Box>
+            <Box>
               <IconButton>
                 <ShareIcon style={{ fontSize: 20 }} />
               </IconButton>
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       </Paper>
-    </a>
+    </Box>
   );
 };

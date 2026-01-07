@@ -1,11 +1,7 @@
 import React from 'react';
 
-import { Paper, Typography } from '@material-ui/core';
+import { Paper, Typography, List, ListItem, ListItemText, Divider } from '@mui/material';
 import { useHomeStyles } from '../pages/theme';
-import List from '@material-ui/core/List/List';
-import ListItem from '@material-ui/core/ListItem/ListItem';
-import ListItemText from '@material-ui/core/ListItemText/ListItemText';
-import Divider from '@material-ui/core/Divider/Divider';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectIsTagsLoaded, selectTagsItems } from '../store/ducks/tags/selectors';

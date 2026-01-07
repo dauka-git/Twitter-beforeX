@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from '@reduxjs/toolkit';
 import { tweetsReducer } from './ducks/tweets/reducer';
 import { tagsReducer } from './ducks/tags/reducer';
 import { tweetReducer } from './ducks/tweet/reducer';
