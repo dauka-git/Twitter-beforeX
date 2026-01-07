@@ -1,4 +1,4 @@
-import { Avatar, CircularProgress, Paper, Typography, Tabs, Tab, Skeleton } from '@mui/material';
+import { Avatar, CircularProgress, Paper, Typography, Tabs, Tab, Skeleton, Box } from '@mui/material';
 import React from 'react';
 import { BackButton } from '../../components/BackButton';
 import { useHomeStyles } from '../theme';
@@ -11,10 +11,11 @@ import { Tweet } from '../../components/Tweet';
 import { fetchTweets } from '../../store/ducks/tweets/actionCreators';
 import { User } from '../../store/ducks/user/contracts/state';
 import { AuthApi } from '../../services/api/authApi';
-import { RouteComponentProps } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
+export const UserPage: React.FC = () => {
   const classes = useHomeStyles();
+  const { id } = useParams<{ id: string }>();
   const tweets = useSelector(selectTweetsItems);
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsTweetsLoading);
@@ -22,7 +23,7 @@ export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match 
   const [userData, setUserData] = React.useState<User | undefined>();
 
   React.useEffect(() => {
-    const userId = match.params.id;
+    const userId = id;
     dispatch(fetchTweets());
     if (userId) {
       AuthApi.getUserInfo(userId).then(({ data }) => {
@@ -36,8 +37,8 @@ export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match 
   };
 
   return (
-    <Paper className={classNames(classes.tweetsWrapper, 'user')} variant="outlined">
-      <Paper className={classes.tweetsHeader} variant="outlined">
+    <Paper sx={{ ...classes.tweetsWrapper }} className="user" variant="outlined">
+      <Paper sx={classes.tweetsHeader} variant="outlined">
         <BackButton />
 
         <div>
@@ -89,9 +90,9 @@ export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match 
       </Tabs>
       <div className="user__tweets">
         {isLoading ? (
-          <div className={classes.tweetsCentred}>
+          <Box sx={classes.tweetsCentred}>
             <CircularProgress />
-          </div>
+          </Box>
         ) : (
           tweets.map((tweet) => (
             <Tweet key={tweet._id} classes={classes} images={tweet.images} {...tweet} />

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Avatar, CircularProgress, Paper, Typography, Divider, IconButton } from '@mui/material';
+import { Avatar, CircularProgress, Paper, Typography, Divider, IconButton, Box } from '@mui/material';
 import mediumZoom from 'medium-zoom';
-import classNames from 'classnames';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import RepostIcon from '@mui/icons-material/RepeatOutlined';
 import LikeIcon from '@mui/icons-material/FavoriteBorderOutlined';
@@ -42,45 +41,45 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
 
   if (isLoading) {
     return (
-      <div className={classes.tweetsCentred}>
+      <Box sx={classes.tweetsCentred}>
         <CircularProgress />
-      </div>
+      </Box>
     );
   }
 
   if (tweetData) {
     return (
       <>
-        <Paper className={classes.fullTweet}>
-          <div className={classNames(classes.tweetsHeaderUser)}>
+        <Paper sx={classes.fullTweet}>
+          <Box sx={classes.tweetsHeaderUser}>
             <Avatar
-              className={classes.tweetAvatar}
+              sx={classes.tweetAvatar}
               alt={`Аватарка пользователя ${tweetData.user.fullname}`}
             />
             <Typography>
               <Link to={`/user/${tweetData.user._id}`}>
                 <b>{tweetData.user.fullname}</b>&nbsp;
               </Link>
-              <div>
-                <span className={classes.tweetUserName}>@{tweetData.user.username}</span>&nbsp;
-              </div>
+              <Box>
+                <Typography component="span" sx={classes.tweetUserName}>@{tweetData.user.username}</Typography>&nbsp;
+              </Box>
             </Typography>
-          </div>
-          <Typography className={classes.fullTweetText} gutterBottom>
+          </Box>
+          <Typography sx={classes.fullTweetText} gutterBottom>
             {tweetData.text}
-            <div className="tweet-images">
+            <Box className="tweet-images">
               {tweetData.images && <ImageList classes={classes} images={tweetData.images} />}
-            </div>
+            </Box>
           </Typography>
           <Typography>
-            <span className={classes.tweetUserName}>
+            <Typography component="span" sx={classes.tweetUserName}>
               {format(new Date(tweetData.createdAt), 'H:mm', { locale: ruLang })} ·{' '}
-            </span>
-            <span className={classes.tweetUserName}>
+            </Typography>
+            <Typography component="span" sx={classes.tweetUserName}>
               {format(new Date(tweetData.createdAt), 'dd MMM. yyyy г.', { locale: ruLang })}
-            </span>
+            </Typography>
           </Typography>
-          <div className={classNames(classes.tweetFooter, classes.fullTweetFooter)}>
+          <Box sx={{ ...classes.tweetFooter, ...classes.fullTweetFooter }}>
             <IconButton>
               <CommentIcon style={{ fontSize: 25 }} />
             </IconButton>
@@ -93,7 +92,7 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
             <IconButton>
               <ShareIcon style={{ fontSize: 25 }} />
             </IconButton>
-          </div>
+          </Box>
         </Paper>
         <Divider />
         <Tweet

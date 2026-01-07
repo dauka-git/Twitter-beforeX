@@ -49,6 +49,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/home/tweet/:id" element={<Home />} />
           <Route path="/user/:id" element={<UserPage />} />
           <Route path="/user/activate/:hash" element={<ActivatePage />} />
         </Route>
